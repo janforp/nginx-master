@@ -1,0 +1,19 @@
+upstream myapp1 {
+        ip_hash;
+            server localhost:18080;
+            server localhost:18081;
+            server localhost:18082;
+}
+server {
+            listen 8000;
+            location / {
+                proxy_pass http://myapp1;
+        }
+}
+
+nginx监听本地的8000端口，并将请求转发到localhost:18080，
+localhost:18081和localhost:18082三个app中的一个，
+映射的策略是ip_hash，这个策略会对请求的ip进行hash运算并将结果映射到其中一个app，它能确保一个确定的请求ip会被映射到一个确定的服务，
+这样就连session的问题也不用考虑了。
+
+配置完成后，你只需要在本地其三个服务，分别监听18080，18081和18082，然后打开浏览器访问localhost:8000，就会访问到你的其中一个服务。
