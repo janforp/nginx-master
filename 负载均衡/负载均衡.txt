@@ -1,0 +1,4 @@
+1.如果按图1的nginx配置会报400错：
+115.236.91.15 - - [27/Jul/2018:10:32:10 +0800] "GET /test/one/user HTTP/1.1" 400 5 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36" "-"
+
+2.需要配置成图2的方法
